@@ -17,17 +17,17 @@ struct DownloadView: View {
         VStack (spacing: 0) {
             Image(systemName: "arrow.down")
                 .font(.system(size: 40).bold())
-                .offset(y: isAnimating ? 15: -15)
+                .offset(y: isAnimating ? 12: -12)
                 .animation(.easeInOut(duration: 0.9).repeatForever(), value: isAnimating)
             RoundedRectangle(cornerRadius: 9)
                 .trim(from: 0, to: 0.5)
-                .stroke(lineWidth: 5)
+                .stroke(lineWidth: 4)
                 .frame(width: 50, height: 30)
         }
         .padding(30)
         .background(alignment: .center) {
             Circle()
-                .stroke(lineWidth: 3)
+                .stroke(lineWidth: 4)
         }
         .onAppear {
             isAnimating.toggle()
