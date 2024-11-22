@@ -13,10 +13,10 @@ struct TraingleShape: Shape {
     
     func path(in rect: CGRect) -> Path {
         Path { path in
-            path.move(to: CGPoint(x: rect.midX, y: rect.midY - lineLenght/2))
-            path.addLine(to: CGPoint(x: rect.midX - lineLenght/2, y: rect.midY + lineLenght/2))
-            path.addLine(to: CGPoint(x: rect.midX + lineLenght/2, y: rect.midY + lineLenght/2))
-            path.addLine(to: CGPoint(x: rect.midX, y: rect.midY - lineLenght/2))
+            path.move(to: CGPoint(x: rect.midX, y: rect.minY))
+            path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+            path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+            path.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
             path.closeSubpath()
         }
     }
@@ -25,5 +25,5 @@ struct TraingleShape: Shape {
 #Preview {
     TraingleShape()
         .stroke(lineWidth: 5)
-        .background(Color.blue)
+        .frame(width: 100, height: 100)
 }

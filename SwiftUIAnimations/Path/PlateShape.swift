@@ -14,12 +14,20 @@ struct PlateShape: Shape {
     func path(in rect: CGRect) -> Path {
         
         Path { path in
-            path.move(to: CGPoint(x: rect.midX - 30 - 4, y: rect.midY + 2))
+            path.move(to: .init(x: rect.minX, y: rect.minY))
             
+            path.addQuadCurve(
+                to: .init(x: rect.maxY, y: rect.minY),
+                control: .init(x: rect.midX, y: rect.maxY/2 - 80)
+            )
             
-//            path.addLine(to: CGPoint(x: rect.midX - lineLenght/2, y: rect.midY + lineLenght/2))
-//            path.addLine(to: CGPoint(x: rect.midX + lineLenght/2, y: rect.midY + lineLenght/2))
-//            path.addLine(to: CGPoint(x: rect.midX, y: rect.midY - lineLenght/2))
+//            path.addArc(
+//                center: .init(x: rect.midX, y: rect.midY),
+//                radius: rect.width/2,
+//                startAngle: .degrees(0),
+//                endAngle: .degrees(180),
+//                clockwise: false
+//            )
             path.closeSubpath()
         }
     }
@@ -28,5 +36,7 @@ struct PlateShape: Shape {
 #Preview {
     PlateShape()
         .stroke(lineWidth: 5)
-        .background(Color.blue)
+        .frame(width: 200, height: 200)
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 5).stroke(style: .init(dash: [5])))
 }
